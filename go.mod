@@ -1,4 +1,4 @@
-module github.com/k8stopologyawareschedwg/noderesourcetopology-api
+module github.com/swatisehgal/noderesourcetopology-api
 
 go 1.15
 
