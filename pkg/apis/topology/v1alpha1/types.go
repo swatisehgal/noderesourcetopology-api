@@ -55,9 +55,19 @@ type ZoneList []Zone
 // ResourceInfo contains information about one resource type.
 // +protobuf=true
 type ResourceInfo struct {
+        // Name of the resource.
 	Name        string            `json:"name" protobuf:"bytes,1,opt,name=name"`
-	Allocatable resource.Quantity `json:"allocatable" protobuf:"bytes,2,opt,name=allocatable"`
+	// Capacity of the resource, corresponding to capacity in node status, i.e.
+        // total amount of this resource that the node has.
 	Capacity    resource.Quantity `json:"capacity" protobuf:"bytes,3,opt,name=capacity"`
+	// Allocatable quantity of the resource, corresponding to allocatable in
+        // node status, i.e. total amount of this resource available to be used by
+        // pods.	
+	Allocatable resource.Quantity `json:"allocatable" protobuf:"bytes,2,opt,name=allocatable"`
+	// Available is the amount of this resource currently available for new (to
+        // be scheduled) pods, i.e. Allocatable minus the resources reserved by
+        // currently running pods.
+	Available resource.Quantity `json:"available" protobuf:"bytes,4,opt,namecavailable"`
 }
 
 // ResourceInfoList contains an array of ResourceInfo objects.
